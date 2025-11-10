@@ -1,3 +1,6 @@
+
+
+
 import { Suspense, lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 
@@ -16,6 +19,11 @@ const Loadable = (Component) => (props) => {
   );
 };
 
+const GeneralApp = Loadable(
+  lazy(() => import("../pages/dashboard/GeneralApp")),
+);
+const Page404 = Loadable(lazy(() => import("../pages/Page404")));
+
 export default function Router() {
   return useRoutes([
     {
@@ -31,9 +39,4 @@ export default function Router() {
     },
     { path: "*", element: <Navigate to="/404" replace /> },
   ]);
-}
-
-const GeneralApp = Loadable(
-  lazy(() => import("../pages/dashboard/GeneralApp")),
-);
-const Page404 = Loadable(lazy(() => import("../pages/Page404")));
+};
