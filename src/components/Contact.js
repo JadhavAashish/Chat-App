@@ -1,14 +1,79 @@
-import { Avatar, Box, Button, Divider, IconButton, Stack, Typography, useTheme } from '@mui/material'
+import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Slide, Stack, Typography, useTheme } from '@mui/material'
 import { Bell, CaretRight, Divide, Phone, Prohibit, Star, Trash, VideoCamera, X } from 'phosphor-react';
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { ToogleSidebar, UpdateSidebarType } from '../Redux/slices/app';
 import { faker } from '@faker-js/faker';
 import AntSwitch from "./AntSwitch";
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const BlockDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      slots={{
+        transition: Transition,
+      }}
+      keepMounted
+      onClose={handleClose} 
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Block this contact</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure want to Block this Contact ..?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Yes</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+const DeleteDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      slots={{
+        transition: Transition,
+      }}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Delete this chat</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure want to Delete this chat ..?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Yes</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+
 const Contact = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const [openBlock, setOpenBlock] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const handleCloseBlock = () => {
+    setOpenBlock(false);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
 
   return (
     <Box sx={{ width: 320, height: "100vh" }}>
@@ -98,10 +163,12 @@ const Contact = () => {
             </Button>
           </Stack>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            {[1, 2, 3].map((e) => {
-              <Box>
-                <img src={faker.image.food()} alt={faker.name.fullName()} />
-              </Box>
+            {[1, 2, 3].map(() => {
+              return (
+                <Box>
+                  <img src={faker.image.food()} alt={faker.name.fullName()} />
+                </Box>
+              );
             })}
           </Stack>
 
@@ -109,7 +176,7 @@ const Contact = () => {
 
           <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <Star size={21}/>
+              <Star size={21} />
               <Typography variant="subtitle2">Starred Messages</Typography>
             </Stack>
             <IconButton onClick={() => {
@@ -123,7 +190,7 @@ const Contact = () => {
 
           <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <Bell size={21}/>
+              <Bell size={21} />
               <Typography variant="subtitle2">Mute Notification</Typography>
             </Stack>
             <IconButton>
@@ -131,12 +198,12 @@ const Contact = () => {
             </IconButton>
           </Stack>
 
-            <Divider/>
-            <Typography>
-              1 group in common
-            </Typography>
+          <Divider />
+          <Typography>
+            1 group in common
+          </Typography>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            <Avatar src={faker.image.avatar()} alt={faker.name.fullName()}/>
+            <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
             <Stack spacing={.5}>
               <Typography variant="subtitle2">Coding Monk</Typography>
               <Typography variant="caption">Lion, Rabbit, Tiger, You</Typography>
@@ -144,12 +211,13 @@ const Contact = () => {
           </Stack>
 
           <Stack direction={"row"} alignItems={"center"} spacing={2}>
-            <Button fullWidth variant="outlined" startIcon={<Prohibit/>}>Block</Button>
-            <Button fullWidth variant="outlined" startIcon={<Trash/>}>Delete</Button>
+            <Button onClick={() => setOpenBlock(true)} fullWidth variant="outlined" startIcon={<Prohibit />}>Block</Button>
+            <Button onClick={() => setOpenDelete(true)} fullWidth variant="outlined" startIcon={<Trash />}>Delete</Button>
           </Stack>
         </Stack>
       </Stack>
-
+            {openBlock && <BlockDialog open={openBlock} handleClose={handleCloseBlock}/>}
+            {openDelete && <DeleteDialog open={openDelete} handleClose={handleCloseDelete}/>}
     </Box>
   )
 }

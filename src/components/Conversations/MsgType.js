@@ -3,7 +3,7 @@ import { Box, Divider, IconButton, Link, Menu, MenuItem, Stack, Typography, useT
 import { DotsSixVertical, DotsThreeVertical, DownloadSimple, Image } from 'phosphor-react';
 import { Message_options } from '../../data';
 
-const DocMsg = ({ el }) => {
+const DocMsg = ({ el, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
@@ -39,12 +39,12 @@ const DocMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOption />
+      {menu && <MessageOption />}
     </Stack>
   )
 };
 
-const LinkMsg = ({ el }) => {
+const LinkMsg = ({ el, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
@@ -93,13 +93,13 @@ const LinkMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOption />
+      {menu && <MessageOption />}
     </Stack>
   )
 };
 
 
-const ReplyMsg = ({ el }) => {
+const ReplyMsg = ({ el, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
@@ -131,13 +131,13 @@ const ReplyMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOption />
+      {menu && <MessageOption />}
     </Stack>
   );
 };
 
 
-const MediaMsg = ({ el }) => {
+const MediaMsg = ({ el, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={el.incoming ? "start" : "end"}>
@@ -158,12 +158,12 @@ const MediaMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOption />
+      {menu && <MessageOption />}
     </Stack>
   );
 };
 
-const TextMsg = ({ el }) => {
+const TextMsg = ({ el, menu }) => {
   const theme = useTheme();
 
   return (
@@ -180,7 +180,7 @@ const TextMsg = ({ el }) => {
           {el.message}
         </Typography>
       </Box>
-      <MessageOption />
+      {menu && <MessageOption />} 
     </Stack>
   );
 }
