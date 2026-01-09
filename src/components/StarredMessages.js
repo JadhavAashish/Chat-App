@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { UpdateSidebarType } from '../Redux/slices/app';
 import { X } from 'phosphor-react';
 
-const Starred = () => {
+const StarredMessages = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
 
@@ -54,4 +54,4 @@ const Starred = () => {
     )
 }
 
-export default Starred;
+export default StarredMessages;

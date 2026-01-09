@@ -5,7 +5,7 @@ import Conversation from "../../components/Conversations";
 import Contact from "../../components/Contact";
 import { useSelector } from "react-redux";
 import SharedMessages from "../../components/SharedMessages";
-import Starred from "../../components/Starred";
+import StarredMessages from "../../components/StarredMessages";
 //Dynamic Import
 
 const GeneralApp = () => {
@@ -34,7 +34,7 @@ const GeneralApp = () => {
             case "CONTACT":
               return <Contact />;
             case "STARRED":
-              return <Starred />;
+              return <StarredMessages />;
             case "SHARED":
               return <SharedMessages />;
             default:
@@ -47,3 +47,5 @@ const GeneralApp = () => {
 };
 
 export default GeneralApp;
+
+
