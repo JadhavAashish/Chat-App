@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { Box, Stack, styled, TextField, InputAdornment, IconButton, Fab, Tooltip } from "@mui/material";
 import { Camera, File, Image, LinkSimple, PaperPlaneTilt, Smiley, Sticker, User } from 'phosphor-react';
 import { useTheme } from '@mui/material';
-import { Picker } from 'emoji-mart';
-import 'emoji-mart/css/emoji-mart.css';
+//import { Picker } from 'emoji-mart';
+
+import Picker  from '@emoji-mart/react';
+import emojiData from '@emoji-mart/data';
+
+function MyEmojiPicker() {
+  return <Picker data={emojiData} onEmojiSelect={(e) => console.log(e)} />;
+}
 
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -103,7 +109,7 @@ const Footer = () => {
             <Stack direction={"row"} alignItems={"center"} spacing={3}>
                 <Stack sx={{ width: '100%' }}>
                     <Box sx={{ display: openPicker ? "inline" : "none", zIndex: 10, position: 'fixed', bottom: 81, right: 100 }}>
-                        <Picker theme={theme.palette.mode} onSelect={(emoji) => console.log(emoji.native)} />
+                        <Picker data={emojiData} theme={theme.palette.mode} onEmojiSelect={(emoji) => console.log(emoji.native)} />
                     </Box>
                     <ChatInput setOpenPicker={setOpenPicker} />
                 </Stack>
