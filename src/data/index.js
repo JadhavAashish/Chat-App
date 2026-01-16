@@ -46,6 +46,104 @@ const Nav_Setting = [
   },
 ];
 
+const CallLogs = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: true,
+    pinned: true,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: true,
+    incoming: false,
+    pinned: true,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: true,
+    pinned: true,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: true,
+    pinned: false,
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: true,
+    incoming: false,
+    pinned: true,
+  },
+  {
+    id: 5,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: false,
+    incoming: false,
+    pinned: true,
+  },
+  {
+    id: 6,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    missed: true,
+    incoming: false,
+    pinned: true,
+  },
+];
+
+const MembersLists =[
+{
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false
+  },
+{
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true
+  },
+{
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false
+  },
+{
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false
+  },
+{
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true
+  },
+{
+    id: 5,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true
+  },
+];
+
 const ChatList = [
   {
     id: 0,
@@ -220,7 +318,7 @@ const Message_options = [
   },
 ];
 
-const SHARED_LINKS = [ 
+const SHARED_LINKS = [
   {
     type: "msg",
     subtype: "link",
@@ -315,5 +413,7 @@ export {
   Chat_History,
   Message_options,
   SHARED_DOCS,
-  SHARED_LINKS
+  SHARED_LINKS, 
+  CallLogs, 
+  MembersLists,
 };
